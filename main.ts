@@ -68,12 +68,11 @@ app.post("/post", async (req: Request, res: Response, _next: NextFunction) => {
   let text = req?.body?.text || ""
   let alt = req?.body?.alt || ""
 
-  
+
 
   console.log({ alt, text })
 
   console.log("logging into agent")
-
   await agent.login({
     identifier,
     password,
