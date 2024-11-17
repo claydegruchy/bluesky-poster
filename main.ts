@@ -73,20 +73,29 @@ app.post("/post", async (req: Request, res: Response, _next: NextFunction) => {
   console.log({ alt, text })
 
   console.log("logging into agent")
-  await agent.login({
-    identifier,
-    password,
-  }).then(() => console.log("initated bsky"))
-    .catch((e) => {
-      console.log(e.error)
-      if (e.error == "RateLimitExceeded") {
-        let rateLimitReset = parseInt(e.headers["ratelimit-reset"])
-        let now = parseInt((Date.now() + "").slice(0, -3))
-        let message = (now - rateLimitReset) / -60 + " mins until reset"
-        console.log(message)
-        res.sendStatus(429).send(message)
-      }
-    })
+
+
+
+  try {
+    await agent.login({
+      identifier,
+      password,
+    }).then(() => console.log("initated bsky"))
+  } catch (e) {
+    console.log(e.error)
+    if (e.error == "RateLimitExceeded") {
+      let rateLimitReset = parseInt(e.headers["ratelimit-reset"])
+      let now = parseInt((Date.now() + "").slice(0, -3))
+      let message = (now - rateLimitReset) / -60 + " mins until reset"
+      console.log(message)
+      res.sendStatus(429).send(message)
+      return res.end()
+
+    }
+
+  }
+
+
 
 
   try {
