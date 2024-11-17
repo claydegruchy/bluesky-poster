@@ -5,7 +5,7 @@ on:
     branches:
       - main
 env:
-  PROJECT_ID: misc-services
+  PROJECT_ID: chan-services
   GAR_LOCATION: us-central1
   REPOSITORY: deno-repository
   SERVICE: bluesky-poster
