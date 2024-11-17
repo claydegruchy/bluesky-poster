@@ -68,6 +68,7 @@ app.post("/post", async (req: Request, res: Response, _next: NextFunction) => {
   let text = req?.body?.text || ""
   let alt = req?.body?.alt || ""
 
+  
 
   console.log({ alt, text })
 
