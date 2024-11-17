@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    container_name: bluesky-poster-container
+    image: bluesky-poster-image
+    platform: linux/amd64
+
+    ports:
+      - "8080:8080"
+    environment:
+    - BLUESKY_PASSWORD=${BLUESKY_PASSWORD}
+    - BLUESKY_HANDLE=${BLUESKY_HANDLE}
+    - API_KEY=${API_KEY}
+
+
+    
+
